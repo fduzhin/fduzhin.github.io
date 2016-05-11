@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pedicting future population</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Pedicting future population">
+  <meta name="author" content="Fedor Duzhin">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Pedicting future population</h1>
+    <h2>Lecture and PBL for Singapore Poly</h2>
+    <p>Fedor Duzhin<br/>Nanyang Technological University</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <!-- Limit image width and height -->
+
+<style type='text/css'>
+img {
+    max-height: 400px;
+    max-width: 964px;
+}
+</style>
+
+<!-- Center image on slide -->
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+
+<script type='text/javascript'>
+$(function() {
+    $("p:has(img)").addClass('centered');
+});
+</script>
+
+<h1>Plan</h1>
+
+<ol class = "build incremental">
+<li>Scatterplots</li>
+<li>Linear regression</li>
+<li>Differential equations for population growth</li>
+<li>PBL</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>Scatterplots</h1>
+  </hgroup>
+  <article data-timings="">
+    <h1></h1>
+
+<p><img src="figure/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" /></p>
+
+<p>Rental price vs floor area at Reflections at Keppel Bay in Apr 2015 - Mar 2016. </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>Scatterplots</h1>
+  </hgroup>
+  <article data-timings="">
+    <h1></h1>
+
+<p><img src="figure/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" /></p>
+
+<p>Fuel consumption (miles per gallon) vs engine displacement (cubic inches).</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>Scatterplots</h1>
+  </hgroup>
+  <article data-timings="">
+    <h1></h1>
+
+<p><img src="figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" /></p>
+
+<p>Ordinary differential equations class at NTU: Final exam score vs PBL score.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>Scatterplots</h1>
+  </hgroup>
+  <article data-timings="">
+    <h1></h1>
+
+<p><img src="figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" /></p>
+
+<p>Prices of diamonds depending on weight and colour.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>Scatterplots</h1>
+  </hgroup>
+  <article data-timings="">
+    <h1></h1>
+
+<p><img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" /></p>
+
+<p>Height of children (blue=male, pink=female) depending on father&#39;s height and mother&#39;s height.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>Scatterplots</h1>
+  </hgroup>
+  <article data-timings="">
+    <h1></h1>
+
+<p><img src="chocolate.png" alt="Nobel laureates vs chocolate consumption"></p>
+
+<p>Number of Nobel laureates per capita vs chocolate consumption</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h1>Linear regression</h1>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <p>Ohm&#39;s Law: 
+\[
+V=IR
+\]</p>
+
+<ol class = "build incremental">
+<li>Clearly, the blue line captures the trend better than the green line.</li>
+<li>Try to find \(R\) that captures the data best</li>
+<li>For each \(R\), define \(E(R)\) to be deviation of the line \(I=RV\) from observed data</li>
+<li>Optimization problem
+\[
+E(R)=\quad\leadsto\quad\min
+\]</li>
+<li>To find the minimum,
+\[
+\frac{dE}{dR}=0
+\]</li>
+</ol>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p>Data points \((V_k,I_k)\) from measurement:</p>
+
+<p><img src="figure/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" /></p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h3>Question</h3>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>What is a correct form of \(E(R)\)?</p>
+
+<ol>
+<li>1 \(E(R)=(RV_k-I_k)^2\)</li>
+<li>2 \(E(R)=\sum_{k=1}^{n}(RV_k-I_k)\)</li>
+<li><em>3</em> \(E(R)=\sum_{k=1}^{n}|RV_k-I_k|\) </li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-hint">
+  <p>Which quantity depends on all data points and cannot be negative?</p>
+
+</div>
+<div class="quiz-explanation">
+  <p>The right answer is 
+\[
+E(R)=\sum_{k=1}^{n}|RV_k-I_k|
+\]
+\(|RV_k-I_k|\) is deviation of the line \(I=RV\) from each data point. It cannot be negative. The sum of all these values measures the total deviation of the line from all data points.</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Ordinary least squares:</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol class = "build incremental">
+<li>There are different forms of \(E(R)\)</li>
+<li>Possible: 
+\[
+E(R)=\sum_{k=1}^{n}|RV_k-I_k|
+\]</li>
+<li>But the most common is
+\[
+E(R)=\sum_{k=1}^{n}(RV_k-I_k)^2
+\]</li>
+<li>Why?</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>Linear regression</h1>
+  </hgroup>
+  <article data-timings="">
+    <ol class = "build incremental">
+<li>OLS error
+\[
+E(R)=\sum_{k=1}^{n}(RV_k-I_k)^2\quad\leadsto\quad\min
+\]</li>
+<li>First derivative
+\[
+\frac{dE}{dR}=\sum_{k=1}^{n}2V_k(RV_k-I_k)=0
+\]</li>
+<li>Simplifying
+\[
+R\cdot \sum_{k=1}^{n}V_k^2-\sum_{k=1}^{n}V_kI_k=0\quad\iff\quad
+R=\frac{\sum_{k=1}^{n}V_kI_k}{ \sum_{k=1}^{n}V_k^2}
+\]</li>
+<li>Linear regression - the line \(I=RV\), where \(R\) is found as above.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>Linear regression</h1>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" /></p>
+
+<p>Discuss the meaning of the shadowed region</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Linear regression: more general case</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Data points \((x_1,y_1),\dots,(x_n,y_n)\). Assumption: \(Y=aX+b\).</p>
+
+<ol class = "build incremental">
+<li>OLS error
+\[
+E(a,b)=\sum_{k=1}^{n}(ax_k+b-y_k)^2\quad\leadsto\quad\min
+\]</li>
+<li>First derivatives
+\[
+\frac{\partial E}{\partial a}=\frac{\partial E}{\partial b}=0
+\]</li>
+<li>System of linear equations on \(a\) and \(b\)</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h3>Rental prices at Reflections</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" /></p>
+
+<p>Is linear regression a true model?</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h3>Fuel consumption</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" /></p>
+
+<p>Is linear regression a true model?</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h3>Stopping distance of vintage cars</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" /></p>
+
+<p>What should be the right model?</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h3>Stopping distance of a car</h3>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>If \(v\) is the speed and \(s(v)\) is the stopping distance, what&#39;s the right model?</p>
+
+<ol>
+<li>1 \(s(v)=av\)</li>
+<li>2 \(s(v)=av^2\)</li>
+<li>3 \(s(v)=av+b\) </li>
+<li><em>4</em> \(s(v)=av^2+bv\) </li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-hint">
+  <p>The stopping distance consists of reaction distance and braking distance. </p>
+
+</div>
+<div class="quiz-explanation">
+  <p>The right answer is 
+\[
+s(v)=av^2+bv
+\]
+The first term is braking distance, i.e., proportional to the kinetic energy. The second term is reaction distance, i.e., proportional
+to the speed of the car.</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h3>Fedor&#39;s ODE class</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" /></p>
+
+<p>Is linear regression a true model?</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h3>Diamonds of a particular colour</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" /></p>
+
+<p>What would be the best model? Square? Exponential function?</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h3>Diamonds of a particular colour</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" style="display: block; margin: auto;" /></p>
+
+<p>What does it mean?</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>Population growth</h1>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="too_many_people.jpg" alt="Too many people"></p>
+
+<p>Exponential growth
+\[
+\frac{dP}{dt}=rP\quad\leadsto\quad P(t)=P_0e^{rt}
+\]</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>Turkmenistan population</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="https://www.desmos.com/calculator/vniaezuolh">Desmos graph</a></p>
+
+<div style='float:left;width:48%;' class='centered'>
+  <p><img src="figure/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" /></p>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p><img src="figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" style="display: block; margin: auto;" /></p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>Population growth</h1>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="fish.jpg" alt="Fish in a lake"></p>
+
+<p>Logistic growth
+\[
+\frac{dP}{dt}=r\cdot P\cdot \left(1-\frac{P}{K}\right)
+\]</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>Population growth</h1>
+  </hgroup>
+  <article data-timings="">
+    <ol class = "build incremental">
+<li>Logistic differential equation
+\[
+\frac{dP}{dt}=r\cdot P\cdot \left(1-\frac{P}{K}\right)
+\]</li>
+<li>\(r\) - intrinsic growth rate</li>
+<li>\(K\) - carrying capacity</li>
+<li>\(P_0\) - initial population</li>
+<li><a href="https://www.desmos.com/calculator/pc10scmpjb">Desmos graph</a></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h3>True story</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>In 1992, collapse of the Atlantic northwest cod fishery cost 35000 jobs. The industry operated on the ODE
+\[
+\frac{dP}{dt}=r\cdot P\cdot \left(1-\frac{P}{K}\right)-\alpha P,
+\]
+where \(\alpha\) is the number of fishing boats. The government misinterpreted the data and overestimated the existing fish population.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h3>True story</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="cod_catches.png" alt="Time series of cod catch"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>PBL</h1>
+  </hgroup>
+  <article data-timings="">
+    <p>Choose a country. Find its historical population data (it&#39;s a part of the challenge). Then you&#39;ve got to model the population, produce a scatterplot with the model superimposed on data points, and make a prediction. There will be three versions of the challenge and you need to choose one. The harder the challenge, the higher your grade will be.</p>
+
+<h3>Easy version</h3>
+
+<p>Assuming the exponential model \(P(t)=P_0e^{rt}\), where \(P_0\) is directly observed as initial population, fit the model into data and calculate \(r\). According to the model, when is the country&#39;s population going to reach 6 bln?</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>PBL</h1>
+  </hgroup>
+  <article data-timings="">
+    <p>Choose a country. Find its historical population data (it&#39;s a part of the challenge). Then you&#39;ve got to model the population, produce a scatterplot with the model superimposed on data points, and make a prediction. There will be three versions of the challenge and you need to choose one. The harder the challenge, the higher your grade will be.</p>
+
+<h3>Medium version</h3>
+
+<p>Assume the logistic model
+\[
+\frac{dP}{dt}=r\cdot P\cdot\left(1-\frac{P}{K}\right).
+\]
+It depends on 3 parameters, \(r\), \(K\), and \(P_0\). Assign a reasonable value to \(K\). Solve the differential equation. Fit \(r\) and \(P_0\) into data. According to the model, when is the country&#39;s population is going to reah 95% of its carrying capacity?</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>PBL</h1>
+  </hgroup>
+  <article data-timings="">
+    <p>Choose a country. Find its historical population data (it&#39;s a part of the challenge). Then you&#39;ve got to model the population, produce a scatterplot with the model superimposed on data points, and make a prediction. There will be three versions of the challenge and you need to choose one. The harder the challenge, the higher your grade will be.</p>
+
+<h3>Hard version</h3>
+
+<p>Assume the logistic model
+\[
+\frac{dP}{dt}=r\cdot P\cdot\left(1-\frac{P}{K}\right).
+\]
+It depends on 3 parameters, \(r\), \(K\), and \(P_0\). Solve the differential equation. Fit \(r\), \(K\), and \(P_0\) into data. According to the model, what is the country&#39;s carrying capacity?</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Scatterplots'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Scatterplots'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Scatterplots'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Scatterplots'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Scatterplots'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Scatterplots'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Linear regression'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Question'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Ordinary least squares:'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Linear regression'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Linear regression'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Linear regression: more general case'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Rental prices at Reflections'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Fuel consumption'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Stopping distance of vintage cars'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Stopping distance of a car'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Fedor&#39;s ODE class'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Diamonds of a particular colour'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Diamonds of a particular colour'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Population growth'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Turkmenistan population'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Population growth'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Population growth'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='True story'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='True story'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='PBL'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='PBL'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='PBL'>
+         29
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
