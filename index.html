@@ -174,20 +174,20 @@ $(function() {
 <div style='float:left;width:48%;' class='centered'>
   <p>Ohm&#39;s Law: 
 \[
-V=IR
+I=aV,\qquad a=\frac{1}{R}
 \]</p>
 
 <ol class = "build incremental">
 <li>Clearly, the blue line captures the trend better than the green line.</li>
-<li>Try to find \(R\) that captures the data best</li>
-<li>For each \(R\), define \(E(R)\) to be deviation of the line \(I=RV\) from observed data</li>
+<li>Try to find \(a\) that captures the data best</li>
+<li>For each \(a\), define \(E(a)\) to be deviation of the line \(I=aV\) from observed data</li>
 <li>Optimization problem
 \[
-E(R)=\quad\leadsto\quad\min
+E(a)=\quad\leadsto\quad\min
 \]</li>
 <li>To find the minimum,
 \[
-\frac{dE}{dR}=0
+\frac{dE}{da}=0
 \]</li>
 </ol>
 
@@ -209,12 +209,12 @@ E(R)=\quad\leadsto\quad\min
   <article data-timings="">
     
 <div class="quiz quiz-single well ">
-  <p>What is a correct form of \(E(R)\)?</p>
+  <p>What is a correct form of \(E(a)\)?</p>
 
 <ol>
-<li>1 \(E(R)=(RV_k-I_k)^2\)</li>
-<li>2 \(E(R)=\sum_{k=1}^{n}(RV_k-I_k)\)</li>
-<li><em>3</em> \(E(R)=\sum_{k=1}^{n}|RV_k-I_k|\) </li>
+<li>1 \(E(a)=(aV_k-I_k)^2\)</li>
+<li>2 \(E(a)=\sum_{k=1}^{n}(aV_k-I_k)\)</li>
+<li><em>3</em> \(E(a)=\sum_{k=1}^{n}|aV_k-I_k|\) </li>
 </ol>
 
   <button class="quiz-submit btn btn-primary">Submit</button>
@@ -229,9 +229,9 @@ E(R)=\quad\leadsto\quad\min
 <div class="quiz-explanation">
   <p>The right answer is 
 \[
-E(R)=\sum_{k=1}^{n}|RV_k-I_k|
+E(R)=\sum_{k=1}^{n}|aV_k-I_k|
 \]
-\(|RV_k-I_k|\) is deviation of the line \(I=RV\) from each data point. It cannot be negative. The sum of all these values measures the total deviation of the line from all data points.</p>
+\(|aV_k-I_k|\) is deviation of the line \(I=aV\) from each data point. It cannot be negative. The sum of all these values measures the total deviation of the line from all data points.</p>
 
 </div>
 </div>
@@ -245,14 +245,14 @@ E(R)=\sum_{k=1}^{n}|RV_k-I_k|
   </hgroup>
   <article data-timings="">
     <ol class = "build incremental">
-<li>There are different forms of \(E(R)\)</li>
+<li>There are different forms of \(E(a)\)</li>
 <li>Possible: 
 \[
-E(R)=\sum_{k=1}^{n}|RV_k-I_k|
+E(a)=\sum_{k=1}^{n}|aV_k-I_k|
 \]</li>
 <li>But the most common is
 \[
-E(R)=\sum_{k=1}^{n}(RV_k-I_k)^2
+E(a)=\sum_{k=1}^{n}(aV_k-I_k)^2
 \]</li>
 <li>Why?</li>
 </ol>
@@ -269,18 +269,18 @@ E(R)=\sum_{k=1}^{n}(RV_k-I_k)^2
     <ol class = "build incremental">
 <li>OLS error
 \[
-E(R)=\sum_{k=1}^{n}(RV_k-I_k)^2\quad\leadsto\quad\min
+E(a)=\sum_{k=1}^{n}(aV_k-I_k)^2\quad\leadsto\quad\min
 \]</li>
 <li>First derivative
 \[
-\frac{dE}{dR}=\sum_{k=1}^{n}2V_k(RV_k-I_k)=0
+\frac{dE}{da}=\sum_{k=1}^{n}2V_k(aV_k-I_k)=0
 \]</li>
 <li>Simplifying
 \[
-R\cdot \sum_{k=1}^{n}V_k^2-\sum_{k=1}^{n}V_kI_k=0\quad\iff\quad
-R=\frac{\sum_{k=1}^{n}V_kI_k}{ \sum_{k=1}^{n}V_k^2}
+a\cdot \sum_{k=1}^{n}V_k^2-\sum_{k=1}^{n}V_kI_k=0\quad\iff\quad
+a=\frac{\sum_{k=1}^{n}V_kI_k}{ \sum_{k=1}^{n}V_k^2}
 \]</li>
-<li>Linear regression - the line \(I=RV\), where \(R\) is found as above.</li>
+<li>Linear regression - the line \(I=aV\), where \(a\) is found as above.</li>
 </ol>
 
   </article>
@@ -294,7 +294,7 @@ R=\frac{\sum_{k=1}^{n}V_kI_k}{ \sum_{k=1}^{n}V_k^2}
   <article data-timings="">
     <p><img src="figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" /></p>
 
-<p>Discuss the meaning of the shadowed region</p>
+<p>Discuss the meaning of the shaded region</p>
 
   </article>
   <!-- Presenter Notes -->
